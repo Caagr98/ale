@@ -11,7 +11,7 @@ function! ale_linters#java#javac#GetImportPaths(buffer) abort
 
     if !empty(l:pom_path) && executable('mvn')
         return ale#path#CdString(fnamemodify(l:pom_path, ':h'))
-        \ . 'mvn dependency:build-classpath'
+        \ . 'mvn dependency:build-classpath -DincludeScope=compile'
     endif
 
     let l:classpath_command = ale#gradle#BuildClasspathCommand(a:buffer)
